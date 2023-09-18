@@ -8,9 +8,8 @@ if [ -z $1 ]; then
 elif [ $1 == "rm" ]; then
     rm *.elf *.o
 else
-    aarch64-linux-gnu-as $1.asm -o $1.o
-    aarch64-linux-gnu-gcc $1.o -o $1.elf -nostdlib -static
-    qemu-aarch64 ./$1.elf
+    as $1.asm -o $1.o
+    gcc $1.o -o $1.elf -nostdlib -static
+    ./$1.elf
     echo $?
 fi
-
